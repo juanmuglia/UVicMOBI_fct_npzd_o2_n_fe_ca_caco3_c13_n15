@@ -222,9 +222,18 @@ c     juan: Levin's value was 0.1e-3
       nud0 = nud0/daylen
       nudop0 = nudop0/daylen
       nudon0 = nudon0/daylen
+# if defined O_npzd_iron !Feb. 2018, bug found by Chris Somes, corrected by Juan Muglia
+      alphamax = alphamax/daylen
+      alphamin = alphamin/daylen
+      tap = 2.*par   ! alpha is iron dependent and calculated in npzd_src
+#  if defined O_npzd_caco3
+      tap_C = 2.*par !Total Attenuation by Phyt?
+#  endif
+# else
       tap = 2.*alpha*par
-# if defined O_npzd_caco3
+#  if defined O_npzd_caco3
       tap_C = 2.*alpha_C*par !Total Attenuation by Phyt?
+#  endif
 # endif
 
 !     calculate sinking speed of detritus divided by grid width
